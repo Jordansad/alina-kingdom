@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin – ALINA KINGDOM</title>
+  <link rel="icon" type="image/jpeg" href="images/logo.jpeg" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:   #2D6A4F;
+      --gold:    #F4A823;
+      --ochre:   #C1440E;
+      --dark:    #1A1A1A;
+      --mid:     #444;
+      --muted:   #888;
+      --border:  #e2e2e2;
+      --bg:      #f2f4f6;
+      --card:    #ffffff;
+      --danger:  #d93025;
+      --success: #1e7e34;
+      --sidebar-w: 220px;
+      --header-h: 62px;
+    }
+    html, body { height: 100%; font-family: 'Lato', sans-serif; font-size: 14px; color: var(--dark); background: var(--bg); }
+
+    /* ── Login ── */
+    #loginOverlay {
+      position: fixed; inset: 0; background: var(--dark);
+      display: flex; align-items: center; justify-content: center; z-index: 9999;
+    }
+    .login-box {
+      background: var(--card); border-radius: 16px; padding: 2.5rem 2rem;
+      width: 340px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    }
+    .login-box img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 3px solid var(--gold); margin: 0 auto 1rem; display: block; }
+    .login-box h1 { font-size: 1.2rem; font-weight: 700; letter-spacing: .06em; margin-bottom: .25rem; }
+    .login-box p  { font-size: .8rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .login-input { width: 100%; padding: .65rem 1rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: .9rem; margin-bottom: .75rem; outline: none; }
+    .login-input:focus { border-color: var(--green); }
+    .login-btn { width: 100%; padding: .7rem; background: var(--green); color: #fff; border: none; border-radius: 8px; font-size: .9rem; font-weight: 700; cursor: pointer; }
+    .login-btn:hover { background: #1e4f39; }
+    .login-error { color: var(--danger); font-size: .8rem; margin-top: .5rem; min-height: 1rem; }
+
+    /* ── App shell ── */
+    #adminApp { display: none; height: 100vh; display: flex; flex-direction: column; }
+
+    /* ── Header ── */
+    .adm-header {
+      height: var(--header-h); background: var(--dark); color: #fff;
+      display: flex; align-items: center; padding: 0 1.5rem; gap: 1rem;
+      flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    }
+    .adm-header__brand { display: flex; align-items: center; gap: .6rem; flex: 1; }
+    .adm-header__brand img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
+    .adm-header__brand span { font-weight: 700; font-size: .9rem; letter-spacing: .05em; }
+    .adm-header__brand em { color: var(--gold); font-style: normal; font-size: .7rem; margin-left: .3rem; background: rgba(244,168,35,.15); padding: 2px 6px; border-radius: 4px; }
+    .publish-btn {
+      display: flex; align-items: center; gap: .4rem;
+      background: var(--gold); color: var(--dark); border: none;
+      padding: .5rem 1.2rem; border-radius: 8px; font-weight: 700; font-size: .82rem;
+      cursor: pointer; transition: background .2s, transform .15s;
+    }
+    .publish-btn:hover:not(:disabled) { background: #e09018; transform: translateY(-1px); }
+    .publish-btn:disabled { opacity: .6; cursor: not-allowed; }
+    .logout-btn { background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); border: none; padding: .45rem .9rem; border-radius: 6px; font-size: .8rem; cursor: pointer; }
+    .logout-btn:hover { background: rgba(255,255,255,.15); }
+    .save-local-btn { background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); border: 1px solid rgba(255,255,255,.15); padding: .45rem .9rem; border-radius: 6px; font-size: .8rem; cursor: pointer; }
+    .save-local-btn:hover { background: rgba(255,255,255,.14); }
+    .dirty-badge { background: var(--ochre); color: #fff; font-size: .7rem; font-weight: 700; padding: 2px 7px; border-radius: 12px; }
+
+    /* ── Body layout ── */
+    .adm-body { display: flex; flex: 1; overflow: hidden; }
+
+    /* ── Sidebar ── */
+    .adm-sidebar { width: var(--sidebar-w); background: #222; display: flex; flex-direction: column; flex-shrink: 0; overflow-y: auto; }
+    .adm-sidebar__section { padding: 1.2rem 1rem .4rem; font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+    .adm-nav-btn {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .7rem 1.2rem; color: rgba(255,255,255,.65); border: none;
+      background: none; width: 100%; text-align: left; font-size: .85rem;
+      cursor: pointer; transition: background .15s, color .15s; border-left: 3px solid transparent;
+    }
+    .adm-nav-btn .icon { font-size: 1rem; width: 20px; text-align: center; }
+    .adm-nav-btn:hover { background: rgba(255,255,255,.06); color: #fff; }
+    .adm-nav-btn.active { background: rgba(45,106,79,.25); color: #fff; border-left-color: var(--gold); }
+    .adm-sidebar__footer { margin-top: auto; padding: 1rem; border-top: 1px solid rgba(255,255,255,.08); }
+    .site-link { display: block; text-align: center; font-size: .78rem; color: rgba(255,255,255,.45); padding: .4rem; border-radius: 6px; text-decoration: none; }
+    .site-link:hover { color: var(--gold); background: rgba(255,255,255,.05); }
+
+    /* ── Content ── */
+    .adm-content { flex: 1; overflow-y: auto; padding: 1.8rem 2rem; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .panel-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: .5rem; }
+    .panel-title .badge { background: var(--green); color: #fff; font-size: .65rem; padding: 2px 8px; border-radius: 10px; font-weight: 700; }
+
+    /* ── Cards ── */
+    .card { background: var(--card); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem; box-shadow: 0 2px 10px rgba(0,0,0,.06); border: 1.5px solid var(--border); }
+    .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; padding-bottom: .75rem; border-bottom: 1px solid var(--border); }
+    .card-title { font-weight: 700; font-size: .95rem; display: flex; align-items: center; gap: .5rem; }
+    .card-badge { font-size: .65rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; background: var(--ochre); color: #fff; }
+    .card-badge.gold { background: var(--gold); color: var(--dark); }
+
+    /* ── Form elements ── */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .75rem; margin-bottom: .9rem; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-bottom: .9rem; }
+    .form-group { display: flex; flex-direction: column; gap: .3rem; margin-bottom: .75rem; }
+    .form-label { font-size: .75rem; font-weight: 700; color: var(--mid); text-transform: uppercase; letter-spacing: .05em; display: flex; align-items: center; gap: .3rem; }
+    .lang-flag { font-size: .8rem; }
+    .form-input, .form-textarea, .form-select {
+      padding: .55rem .75rem; border: 1.5px solid var(--border); border-radius: 8px;
+      font-size: .85rem; font-family: 'Lato', sans-serif; color: var(--dark);
+      background: #fafafa; transition: border-color .2s, box-shadow .2s; outline: none;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(45,106,79,.1); background: #fff; }
+    .form-textarea { resize: vertical; min-height: 90px; line-height: 1.55; }
+    .section-divider { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin: 1.2rem 0 .7rem; display: flex; align-items: center; gap: .5rem; }
+    .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* Image preview */
+    .img-preview-wrap { position: relative; }
+    .img-preview { width: 100%; max-height: 160px; object-fit: cover; border-radius: 8px; border: 1.5px solid var(--border); display: none; margin-top: .5rem; }
+    .img-preview.visible { display: block; }
+
+    /* Toggle featured */
+    .toggle-wrap { display: flex; align-items: center; gap: .6rem; }
+    .toggle { position: relative; width: 40px; height: 22px; }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider { position: absolute; inset: 0; background: #ccc; border-radius: 22px; cursor: pointer; transition: background .2s; }
+    .toggle-slider::before { content: ''; position: absolute; width: 16px; height: 16px; background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: transform .2s; }
+    .toggle input:checked + .toggle-slider { background: var(--gold); }
+    .toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
+    .toggle-label { font-size: .82rem; color: var(--mid); }
+
+    /* ── Gallery grid ── */
+    .gallery-admin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .gallery-item-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden; position: relative; transition: box-shadow .2s; }
+    .gallery-item-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.1); }
+    .gallery-item-thumb { width: 100%; height: 140px; object-fit: cover; display: block; background: #eee; }
+    .gallery-item-thumb-placeholder { width: 100%; height: 140px; background: var(--bg); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: .8rem; }
+    .gallery-item-body { padding: .6rem .7rem; }
+    .gallery-caption-input { width: 100%; border: 1px solid var(--border); border-radius: 6px; padding: .3rem .5rem; font-size: .8rem; margin-bottom: .4rem; outline: none; }
+    .gallery-caption-input:focus { border-color: var(--green); }
+    .gallery-item-opts { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .gallery-item-footer { display: flex; gap: .3rem; padding: .4rem .7rem; border-top: 1px solid var(--border); justify-content: space-between; align-items: center; }
+    .gallery-order-btns { display: flex; gap: .2rem; }
+    .icon-btn { border: none; background: none; cursor: pointer; font-size: .9rem; padding: .2rem .4rem; border-radius: 4px; color: var(--muted); transition: background .15s, color .15s; }
+    .icon-btn:hover { background: var(--bg); color: var(--dark); }
+    .icon-btn.danger:hover { background: #fde; color: var(--danger); }
+    .checkbox-label { display: flex; align-items: center; gap: .3rem; font-size: .75rem; color: var(--mid); cursor: pointer; }
+    .checkbox-label input { cursor: pointer; }
+
+    /* Add image form */
+    .add-form { background: var(--card); border: 2px dashed var(--border); border-radius: 12px; padding: 1.25rem; }
+    .add-form-title { font-weight: 700; font-size: .9rem; margin-bottom: 1rem; display: flex; align-items: center; gap: .4rem; }
+
+    /* ── Settings ── */
+    .settings-section { margin-bottom: 2rem; }
+    .settings-section h3 { font-size: .95rem; font-weight: 700; margin-bottom: .3rem; }
+    .settings-section p { font-size: .82rem; color: var(--muted); margin-bottom .9rem; line-height: 1.6; }
+    .settings-note { background: #fffbf0; border: 1px solid var(--gold); border-radius: 8px; padding: .75rem 1rem; font-size: .8rem; color: #7a5a00; margin: .75rem 0; line-height: 1.6; }
+    .settings-note a { color: var(--green); font-weight: 700; }
+    .token-input-wrap { position: relative; }
+    .token-input-wrap .form-input { padding-right: 2.5rem; font-family: monospace; }
+    .token-toggle { position: absolute; right: .5rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--muted); font-size: .9rem; }
+    .conn-status { display: inline-flex; align-items: center; gap: .3rem; font-size: .8rem; font-weight: 700; padding: .25rem .6rem; border-radius: 6px; margin-top: .4rem; }
+    .conn-status.ok { background: #e6f4ea; color: var(--success); }
+    .conn-status.err { background: #fde; color: var(--danger); }
+    .conn-status.testing { background: #e8f0fe; color: #1a73e8; }
+
+    /* ── Buttons ── */
+    .btn { display: inline-flex; align-items: center; gap: .35rem; padding: .5rem 1.1rem; border-radius: 8px; font-size: .82rem; font-weight: 700; border: none; cursor: pointer; transition: background .2s, transform .15s; }
+    .btn:hover:not(:disabled) { transform: translateY(-1px); }
+    .btn:disabled { opacity: .5; cursor: not-allowed; }
+    .btn-primary { background: var(--green); color: #fff; }
+    .btn-primary:hover:not(:disabled) { background: #1e4f39; }
+    .btn-secondary { background: var(--bg); color: var(--mid); border: 1.5px solid var(--border); }
+    .btn-secondary:hover:not(:disabled) { background: var(--border); }
+    .btn-danger { background: #fde; color: var(--danger); }
+    .btn-danger:hover:not(:disabled) { background: #f9c6c6; }
+    .btn-gold { background: var(--gold); color: var(--dark); }
+    .btn-gold:hover:not(:disabled) { background: #e09018; }
+
+    /* ── Toast ── */
+    #toastContainer { position: fixed; top: 1rem; right: 1rem; z-index: 99999; display: flex; flex-direction: column; gap: .5rem; pointer-events: none; }
+    .toast { background: var(--dark); color: #fff; padding: .75rem 1.2rem; border-radius: 10px; font-size: .82rem; font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,.25); opacity: 0; transform: translateX(30px); transition: opacity .25s, transform .25s; pointer-events: auto; max-width: 340px; }
+    .toast.show { opacity: 1; transform: translateX(0); }
+    .toast.success { border-left: 4px solid #4caf50; }
+    .toast.error   { border-left: 4px solid var(--danger); }
+    .toast.info    { border-left: 4px solid #1a73e8; }
+
+    /* ── Publish modal ── */
+    #publishModal { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 9998; display: none; align-items: center; justify-content: center; }
+    #publishModal.open { display: flex; }
+    .modal-box { background: var(--card); border-radius: 16px; padding: 2rem; width: 440px; max-width: 95vw; }
+    .modal-title { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .modal-sub { font-size: .82rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.6; }
+    .modal-progress { height: 4px; background: var(--border); border-radius: 4px; margin: 1rem 0; overflow: hidden; }
+    .modal-progress-bar { height: 100%; background: var(--green); border-radius: 4px; transition: width .4s ease; width: 0; }
+    .modal-status { font-size: .8rem; color: var(--muted); margin-bottom: 1rem; }
+    .modal-actions { display: flex; gap: .6rem; justify-content: flex-end; }
+
+    @media (max-width: 768px) {
+      .adm-sidebar { width: 52px; }
+      .adm-nav-btn span:not(.icon) { display: none; }
+      .adm-sidebar__section { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-row-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div id="loginOverlay">
+  <div class="login-box">
+    <img src="images/logo.jpeg" alt="Logo ALINA KINGDOM" />
+    <h1>ALINA KINGDOM</h1>
+    <p>Panneau d'administration</p>
+    <form id="loginForm">
+      <input class="login-input" type="password" id="loginPwd" placeholder="Mot de passe" autocomplete="current-password" />
+      <button class="login-btn" type="submit">Se connecter</button>
+      <p class="login-error" id="loginError"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ===== ADMIN APP ===== -->
+<div id="adminApp" style="display:none">
+
+  <!-- Header -->
+  <header class="adm-header">
+    <div class="adm-header__brand">
+      <img src="images/logo.jpeg" alt="logo" />
+      <span>ALINA KINGDOM</span>
+      <em>Admin</em>
+    </div>
+    <span class="dirty-badge" id="dirtyBadge" style="display:none">● Non publié</span>
+    <button class="save-local-btn" id="saveLocalBtn" title="Sauvegarder localement (aperçu)">💾 Aperçu local</button>
+    <button class="publish-btn" id="publishBtn">🚀 Publier sur GitHub</button>
+    <button class="logout-btn" id="logoutBtn">Déconnexion</button>
+  </header>
+
+  <!-- Body -->
+  <div class="adm-body">
+
+    <!-- Sidebar -->
+    <nav class="adm-sidebar">
+      <div class="adm-sidebar__section">Contenu</div>
+      <button class="adm-nav-btn active" data-tab="programs">
+        <span class="icon">📅</span><span>Programmes</span>
+      </button>
+      <button class="adm-nav-btn" data-tab="gallery">
+        <span class="icon">🖼</span><span>Galerie</span>
+      </button>
+      <div class="adm-sidebar__section">Système</div>
+      <button class="adm-nav-btn" data-tab="settings">
+        <span class="icon">⚙️</span><span>Paramètres</span>
+      </button>
+      <div class="adm-sidebar__footer">
+        <a href="index.html" target="_blank" class="site-link">↗ Voir le site</a>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="adm-content">
+
+      <!-- ── PROGRAMMES ── -->
+      <div class="tab-panel active" id="tab-programs">
+        <div class="panel-title">📅 Programmes <span class="badge" id="programCount">2</span></div>
+        <div id="programsList"></div>
+      </div>
+
+      <!-- ── GALERIE ── -->
+      <div class="tab-panel" id="tab-gallery">
+        <div class="panel-title">🖼 Galerie <span class="badge" id="galleryCount">0</span></div>
+        <div class="gallery-admin-grid" id="galleryGrid"></div>
+
+        <!-- Add image form -->
+        <div class="add-form">
+          <div class="add-form-title">➕ Ajouter une image</div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">URL de l'image *</label>
+              <input class="form-input" type="url" id="newImgSrc" placeholder="https://..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label">URL miniature (optionnel)</label>
+              <input class="form-input" type="url" id="newImgThumb" placeholder="Même URL si vide" />
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Légende</label>
+              <input class="form-input" type="text" id="newImgCaption" placeholder="Description de la photo" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Format spécial</label>
+              <div style="display:flex;gap:1rem;padding-top:.4rem">
+                <label class="checkbox-label"><input type="checkbox" id="newImgWide" /> Large (2 colonnes)</label>
+                <label class="checkbox-label"><input type="checkbox" id="newImgTall" /> Haut (2 rangées)</label>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" id="addImageBtn">➕ Ajouter à la galerie</button>
+        </div>
+      </div>
+
+      <!-- ── PARAMÈTRES ── -->
+      <div class="tab-panel" id="tab-settings">
+        <div class="panel-title">⚙️ Paramètres</div>
+
+        <!-- GitHub Token -->
+        <div class="card settings-section">
+          <div class="card-header">
+            <div class="card-title">🔑 Token GitHub (requis pour publier)</div>
+          </div>
+          <div class="settings-note">
+            Pour publier, créez un token sur <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a><br>
+            Cochez <strong>"repo"</strong> (accès dépôts). Copiez-collez le token ci-dessous.<br>
+            ⚠️ Il est stocké uniquement dans votre navigateur, jamais transmis à un tiers.
+          </div>
+          <div class="form-group">
+            <label class="form-label">Personal Access Token</label>
+            <div class="token-input-wrap">
+              <input class="form-input" type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" />
+              <button class="token-toggle" id="tokenToggle" type="button">👁</button>
+            </div>
+          </div>
+          <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
+            <button class="btn btn-secondary" id="testConnBtn">🔌 Tester la connexion</button>
+            <button class="btn btn-primary" id="saveTokenBtn">Enregistrer le token</button>
+            <span class="conn-status" id="connStatus" style="display:none"></span>
+          </div>
+        </div>
+
+        <!-- Repo -->
+        <div class="card settings-section">
+          <div class="card-header">
+            <div class="card-title">📦 Dépôt GitHub</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nom du dépôt (propriétaire/nom)</label>
+            <input class="form-input" type="text" id="ghRepo" value="Jordansad/alina-kingdom" />
+          </div>
+          <button class="btn btn-secondary" id="saveRepoBtn">Enregistrer</button>
+        </div>
+
+        <!-- Password -->
+        <div class="card settings-section">
+          <div class="card-header">
+            <div class="card-title">🔒 Modifier le mot de passe admin</div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Nouveau mot de passe</label>
+              <input class="form-input" type="password" id="newPwd" placeholder="Nouveau mot de passe" autocomplete="new-password" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Confirmer</label>
+              <input class="form-input" type="password" id="confirmPwd" placeholder="Confirmer" autocomplete="new-password" />
+            </div>
+          </div>
+          <button class="btn btn-primary" id="savePwdBtn">Changer le mot de passe</button>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Publish modal -->
+<div id="publishModal">
+  <div class="modal-box">
+    <div class="modal-title" id="modalTitle">Publication en cours...</div>
+    <div class="modal-sub" id="modalSub">Envoi des données vers GitHub. Vercel redéployera automatiquement dans ~30 secondes.</div>
+    <div class="modal-progress"><div class="modal-progress-bar" id="modalBar"></div></div>
+    <div class="modal-status" id="modalStatus">Connexion à GitHub...</div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" id="modalClose" style="display:none">Fermer</button>
+      <a class="btn btn-gold" id="modalSiteLink" href="https://github.com/Jordansad/alina-kingdom" target="_blank" style="display:none">Voir sur GitHub</a>
+    </div>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div id="toastContainer"></div>
+
+<script>
+/* ============================================================
+   ADMIN JS
+   ============================================================ */
+
+const DEFAULT_PASSWORD = 'alina2026';
+let siteData   = null;
+let isDirty    = false;
+let ghToken    = localStorage.getItem('ak_gh_token')   || '';
+let ghRepo     = localStorage.getItem('ak_gh_repo')    || 'Jordansad/alina-kingdom';
+
+/* ── Utils ── */
+function toast(msg, type = 'info', duration = 4000) {
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.textContent = msg;
+  document.getElementById('toastContainer').appendChild(el);
+  requestAnimationFrame(() => { el.classList.add('show'); });
+  setTimeout(() => {
+    el.classList.remove('show');
+    setTimeout(() => el.remove(), 300);
+  }, duration);
+}
+
+function markDirty() {
+  isDirty = true;
+  document.getElementById('dirtyBadge').style.display = 'inline-flex';
+}
+
+function markClean() {
+  isDirty = false;
+  document.getElementById('dirtyBadge').style.display = 'none';
+}
+
+/* ── Auth ── */
+document.getElementById('loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const pwd = document.getElementById('loginPwd').value;
+  const stored = localStorage.getItem('ak_admin_pwd') || DEFAULT_PASSWORD;
+  if (pwd === stored) {
+    document.getElementById('loginOverlay').style.display = 'none';
+    document.getElementById('adminApp').style.display = 'flex';
+    initAdmin();
+  } else {
+    document.getElementById('loginError').textContent = 'Mot de passe incorrect.';
+  }
+});
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  if (isDirty && !confirm('Modifications non publiées. Quitter quand même ?')) return;
+  document.getElementById('adminApp').style.display = 'none';
+  document.getElementById('loginOverlay').style.display = 'flex';
+  document.getElementById('loginPwd').value = '';
+  document.getElementById('loginError').textContent = '';
+});
+
+/* ── Tabs ── */
+document.querySelectorAll('.adm-nav-btn[data-tab]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.adm-nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* ── Init ── */
+async function initAdmin() {
+  document.getElementById('ghToken').value = ghToken;
+  document.getElementById('ghRepo').value  = ghRepo;
+
+  // Try loading from localStorage first (local saves), then from server
+  const local = localStorage.getItem('ak_preview_data');
+  if (local) {
+    try { siteData = JSON.parse(local); } catch(e) {}
+  }
+
+  if (!siteData) {
+    try {
+      const r = await fetch('data.json?t=' + Date.now());
+      if (r.ok) siteData = await r.json();
+    } catch(e) {}
+  }
+
+  if (!siteData) siteData = getDefaultData();
+
+  renderProgramsList();
+  renderGalleryGrid();
+}
+
+/* ── Default data ── */
+function getDefaultData() {
+  return {
+    programs: [
+      { id: 'vodun', badge: {fr:'Janvier',en:'January',it:'Gennaio'}, featured: false,
+        image: 'https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=800&q=80',
+        title: {fr:'Circuits Festivités Vodun',en:'Vodun Festival Circuits',it:'Circuiti Festività Vodun'},
+        description: {fr:'Description du programme Vodun...',en:'Vodun program description...',it:'Descrizione programma Vodun...'},
+        dates: {fr:'5 – 20 janvier 2026',en:'January 5–20, 2026',it:'5 – 20 gennaio 2026'},
+        location: {fr:'Cotonou · Ouidah · Abomey',en:'Cotonou · Ouidah · Abomey',it:'Cotonou · Ouidah · Abomey'},
+        group: {fr:'Groupes 8–20 personnes',en:'Groups 8–20 people',it:'Gruppi 8–20 persone'}
+      },
+      { id: 'vacances', badge: {fr:'Juillet',en:'July',it:'Luglio'}, featured: true,
+        image: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&q=80',
+        title: {fr:'Programmes Vacances',en:'Holiday Programs',it:'Programmi Vacanze'},
+        description: {fr:'Description du programme vacances...',en:'Holiday program description...',it:'Descrizione programma vacanze...'},
+        dates: {fr:'1er – 31 juillet 2026',en:'July 1–31, 2026',it:'1° – 31 luglio 2026'},
+        location: {fr:'Cotonou · Ganvié · Grand-Popo',en:'Cotonou · Ganvié · Grand-Popo',it:'Cotonou · Ganvié · Grand-Popo'},
+        group: {fr:'Individuels & familles',en:'Individuals & families',it:'Individui e famiglie'}
+      }
+    ],
+    gallery: []
+  };
+}
+
+/* ── PROGRAMMES ── */
+function renderProgramsList() {
+  const container = document.getElementById('programsList');
+  document.getElementById('programCount').textContent = siteData.programs.length;
+  container.innerHTML = siteData.programs.map((p, i) => buildProgramCard(p, i)).join('');
+  // Image preview
+  container.querySelectorAll('.prog-img-input').forEach(inp => {
+    const prev = inp.closest('.card').querySelector('.img-preview');
+    inp.addEventListener('input', () => {
+      if (inp.value) { prev.src = inp.value; prev.classList.add('visible'); }
+      else prev.classList.remove('visible');
+    });
+    if (inp.value) { prev.src = inp.value; prev.classList.add('visible'); }
+  });
+  // Change listeners
+  container.querySelectorAll('input, textarea, select').forEach(el => {
+    el.addEventListener('input', () => { syncProgramFromForm(); markDirty(); });
+    el.addEventListener('change', () => { syncProgramFromForm(); markDirty(); });
+  });
+}
+
+function buildProgramCard(p, idx) {
+  const isGold = p.featured;
+  return `
+  <div class="card" data-prog-idx="${idx}">
+    <div class="card-header">
+      <div class="card-title">
+        Programme ${idx + 1} — ${p.title.fr}
+        <span class="card-badge ${isGold ? 'gold' : ''}">${p.badge.fr}</span>
+      </div>
+      <div class="toggle-wrap">
+        <label class="toggle" title="Mettre en avant (bordure dorée)">
+          <input type="checkbox" class="prog-featured" data-prog-idx="${idx}" ${p.featured ? 'checked' : ''} />
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="toggle-label">Mis en avant</span>
+      </div>
+    </div>
+
+    <div class="section-divider">Image</div>
+    <div class="form-group">
+      <label class="form-label">URL de l'image du programme</label>
+      <input class="form-input prog-img-input" type="url" data-prog-idx="${idx}" value="${p.image || ''}" placeholder="https://..." />
+      <img class="img-preview" alt="preview" />
+    </div>
+
+    <div class="section-divider">Badge (saison)</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇫🇷</span> FR</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="badge.fr" value="${p.badge.fr}" />
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇬🇧</span> EN</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="badge.en" value="${p.badge.en}" />
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇮🇹</span> IT</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="badge.it" value="${p.badge.it}" />
+      </div>
+    </div>
+
+    <div class="section-divider">Titre</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇫🇷</span> FR</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="title.fr" value="${esc(p.title.fr)}" />
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇬🇧</span> EN</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="title.en" value="${esc(p.title.en)}" />
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇮🇹</span> IT</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="title.it" value="${esc(p.title.it)}" />
+      </div>
+    </div>
+
+    <div class="section-divider">Dates</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇫🇷</span> FR</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="dates.fr" value="${esc(p.dates.fr)}" />
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇬🇧</span> EN</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="dates.en" value="${esc(p.dates.en)}" />
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇮🇹</span> IT</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="dates.it" value="${esc(p.dates.it)}" />
+      </div>
+    </div>
+
+    <div class="section-divider">Lieu & Groupe</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇫🇷</span> Lieu FR</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="location.fr" value="${esc(p.location.fr)}" />
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇬🇧</span> Lieu EN</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="location.en" value="${esc(p.location.en)}" />
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇮🇹</span> Lieu IT</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="location.it" value="${esc(p.location.it)}" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇫🇷</span> Groupe FR</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="group.fr" value="${esc(p.group.fr)}" />
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇬🇧</span> Groupe EN</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="group.en" value="${esc(p.group.en)}" />
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="lang-flag">🇮🇹</span> Groupe IT</label>
+        <input class="form-input" data-prog-idx="${idx}" data-field="group.it" value="${esc(p.group.it)}" />
+      </div>
+    </div>
+
+    <div class="section-divider">Description</div>
+    <div class="form-group">
+      <label class="form-label"><span class="lang-flag">🇫🇷</span> Description FR</label>
+      <textarea class="form-textarea" data-prog-idx="${idx}" data-field="description.fr">${esc(p.description.fr)}</textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="lang-flag">🇬🇧</span> Description EN</label>
+      <textarea class="form-textarea" data-prog-idx="${idx}" data-field="description.en">${esc(p.description.en)}</textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="lang-flag">🇮🇹</span> Description IT</label>
+      <textarea class="form-textarea" data-prog-idx="${idx}" data-field="description.it">${esc(p.description.it)}</textarea>
+    </div>
+  </div>`;
+}
+
+function syncProgramFromForm() {
+  document.querySelectorAll('[data-prog-idx][data-field]').forEach(el => {
+    const idx   = parseInt(el.dataset.progIdx);
+    const field = el.dataset.field;
+    const [key, lang] = field.split('.');
+    const val   = el.value;
+    if (!siteData.programs[idx]) return;
+    if (lang) siteData.programs[idx][key][lang] = val;
+    else      siteData.programs[idx][key]       = val;
+  });
+  document.querySelectorAll('.prog-img-input').forEach(el => {
+    const idx = parseInt(el.dataset.progIdx);
+    if (siteData.programs[idx]) siteData.programs[idx].image = el.value;
+  });
+  document.querySelectorAll('.prog-featured').forEach(el => {
+    const idx = parseInt(el.dataset.progIdx);
+    if (siteData.programs[idx]) siteData.programs[idx].featured = el.checked;
+  });
+}
+
+/* ── GALLERY ── */
+function renderGalleryGrid() {
+  const grid = document.getElementById('galleryGrid');
+  document.getElementById('galleryCount').textContent = siteData.gallery.length;
+  grid.innerHTML = siteData.gallery.map((img, i) => buildGalleryCard(img, i)).join('');
+
+  grid.querySelectorAll('.gallery-caption-input').forEach(inp => {
+    inp.addEventListener('input', () => {
+      const i = parseInt(inp.dataset.idx);
+      siteData.gallery[i].caption = inp.value;
+      markDirty();
+    });
+  });
+  grid.querySelectorAll('.chk-wide').forEach(chk => {
+    chk.addEventListener('change', () => {
+      siteData.gallery[parseInt(chk.dataset.idx)].wide = chk.checked;
+      markDirty();
+    });
+  });
+  grid.querySelectorAll('.chk-tall').forEach(chk => {
+    chk.addEventListener('change', () => {
+      siteData.gallery[parseInt(chk.dataset.idx)].tall = chk.checked;
+      markDirty();
+    });
+  });
+  grid.querySelectorAll('.btn-del-img').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const i = parseInt(btn.dataset.idx);
+      if (!confirm('Supprimer cette image ?')) return;
+      siteData.gallery.splice(i, 1);
+      markDirty();
+      renderGalleryGrid();
+    });
+  });
+  grid.querySelectorAll('.btn-up').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const i = parseInt(btn.dataset.idx);
+      if (i === 0) return;
+      [siteData.gallery[i-1], siteData.gallery[i]] = [siteData.gallery[i], siteData.gallery[i-1]];
+      markDirty(); renderGalleryGrid();
+    });
+  });
+  grid.querySelectorAll('.btn-down').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const i = parseInt(btn.dataset.idx);
+      if (i >= siteData.gallery.length - 1) return;
+      [siteData.gallery[i], siteData.gallery[i+1]] = [siteData.gallery[i+1], siteData.gallery[i]];
+      markDirty(); renderGalleryGrid();
+    });
+  });
+}
+
+function buildGalleryCard(img, i) {
+  const hasThumb = img.thumb || img.src;
+  return `
+  <div class="gallery-item-card">
+    ${hasThumb
+      ? `<img class="gallery-item-thumb" src="${esc(hasThumb)}" alt="${esc(img.caption)}" loading="lazy" onerror="this.style.display='none'" />`
+      : `<div class="gallery-item-thumb-placeholder">Pas d'image</div>`}
+    <div class="gallery-item-body">
+      <input class="gallery-caption-input" type="text" data-idx="${i}" value="${esc(img.caption)}" placeholder="Légende..." />
+      <div class="gallery-item-opts">
+        <label class="checkbox-label"><input type="checkbox" class="chk-wide" data-idx="${i}" ${img.wide?'checked':''}> Large</label>
+        <label class="checkbox-label"><input type="checkbox" class="chk-tall" data-idx="${i}" ${img.tall?'checked':''}> Haut</label>
+      </div>
+    </div>
+    <div class="gallery-item-footer">
+      <div class="gallery-order-btns">
+        <button class="icon-btn btn-up" data-idx="${i}" title="Monter">↑</button>
+        <button class="icon-btn btn-down" data-idx="${i}" title="Descendre">↓</button>
+      </div>
+      <button class="icon-btn danger btn-del-img" data-idx="${i}" title="Supprimer">🗑</button>
+    </div>
+  </div>`;
+}
+
+document.getElementById('addImageBtn').addEventListener('click', () => {
+  const src = document.getElementById('newImgSrc').value.trim();
+  if (!src) { toast('L\'URL de l\'image est obligatoire.', 'error'); return; }
+  siteData.gallery.push({
+    src,
+    thumb: document.getElementById('newImgThumb').value.trim() || src,
+    caption: document.getElementById('newImgCaption').value.trim(),
+    wide: document.getElementById('newImgWide').checked,
+    tall: document.getElementById('newImgTall').checked
+  });
+  document.getElementById('newImgSrc').value = '';
+  document.getElementById('newImgThumb').value = '';
+  document.getElementById('newImgCaption').value = '';
+  document.getElementById('newImgWide').checked = false;
+  document.getElementById('newImgTall').checked = false;
+  markDirty();
+  renderGalleryGrid();
+  toast('Image ajoutée à la galerie.', 'success');
+});
+
+/* ── Local save (aperçu) ── */
+document.getElementById('saveLocalBtn').addEventListener('click', () => {
+  syncProgramFromForm();
+  localStorage.setItem('ak_preview_data', JSON.stringify(siteData));
+  toast('Sauvegarde locale effectuée. Ouvrez index.html?preview=1 pour prévisualiser.', 'info', 5000);
+});
+
+/* ── Settings ── */
+document.getElementById('tokenToggle').addEventListener('click', () => {
+  const inp = document.getElementById('ghToken');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+});
+
+document.getElementById('saveTokenBtn').addEventListener('click', () => {
+  ghToken = document.getElementById('ghToken').value.trim();
+  localStorage.setItem('ak_gh_token', ghToken);
+  toast('Token enregistré.', 'success');
+});
+
+document.getElementById('saveRepoBtn').addEventListener('click', () => {
+  ghRepo = document.getElementById('ghRepo').value.trim();
+  localStorage.setItem('ak_gh_repo', ghRepo);
+  toast('Dépôt enregistré.', 'success');
+});
+
+document.getElementById('testConnBtn').addEventListener('click', async () => {
+  const st = document.getElementById('connStatus');
+  st.style.display = 'inline-flex'; st.className = 'conn-status testing'; st.textContent = '⏳ Test...';
+  const token = document.getElementById('ghToken').value.trim();
+  const repo  = document.getElementById('ghRepo').value.trim();
+  try {
+    const r = await fetch(`https://api.github.com/repos/${repo}`, {
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (r.ok) { st.className = 'conn-status ok'; st.textContent = '✅ Connexion réussie'; }
+    else       { st.className = 'conn-status err'; st.textContent = `❌ Erreur ${r.status}`; }
+  } catch(e) {
+    st.className = 'conn-status err'; st.textContent = '❌ Erreur réseau';
+  }
+});
+
+document.getElementById('savePwdBtn').addEventListener('click', () => {
+  const np = document.getElementById('newPwd').value;
+  const cp = document.getElementById('confirmPwd').value;
+  if (!np) { toast('Entrez un nouveau mot de passe.', 'error'); return; }
+  if (np !== cp) { toast('Les mots de passe ne correspondent pas.', 'error'); return; }
+  if (np.length < 6) { toast('Minimum 6 caractères.', 'error'); return; }
+  localStorage.setItem('ak_admin_pwd', np);
+  document.getElementById('newPwd').value = '';
+  document.getElementById('confirmPwd').value = '';
+  toast('Mot de passe modifié avec succès.', 'success');
+});
+
+/* ── PUBLISH to GitHub ── */
+document.getElementById('publishBtn').addEventListener('click', () => {
+  if (!ghToken) {
+    toast('Configurez votre token GitHub dans Paramètres d\'abord.', 'error', 5000);
+    document.querySelector('[data-tab="settings"]').click();
+    return;
+  }
+  syncProgramFromForm();
+  openPublishModal();
+});
+
+function openPublishModal() {
+  const modal = document.getElementById('publishModal');
+  modal.classList.add('open');
+  document.getElementById('modalTitle').textContent = 'Publication en cours...';
+  document.getElementById('modalSub').textContent = 'Envoi vers GitHub. Vercel redéploiera automatiquement dans ~30 secondes.';
+  document.getElementById('modalBar').style.width = '0';
+  document.getElementById('modalStatus').textContent = 'Connexion à GitHub...';
+  document.getElementById('modalClose').style.display = 'none';
+  document.getElementById('modalSiteLink').style.display = 'none';
+  doPublish();
+}
+
+async function doPublish() {
+  const bar    = document.getElementById('modalBar');
+  const status = document.getElementById('modalStatus');
+
+  function progress(pct, msg) {
+    bar.style.width = pct + '%';
+    status.textContent = msg;
+  }
+
+  try {
+    progress(15, 'Récupération du fichier actuel...');
+    const filePath = 'data.json';
+    const repo     = ghRepo;
+    const token    = ghToken;
+
+    let sha = null;
+    const getResp = await fetch(`https://api.github.com/repos/${repo}/contents/${filePath}`, {
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (getResp.ok) {
+      const fileData = await getResp.json();
+      sha = fileData.sha;
+    }
+
+    progress(40, 'Préparation des données...');
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(siteData, null, 2))));
+    const body = {
+      message: `Admin: mise à jour contenu – ${new Date().toLocaleDateString('fr-FR', {day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})}`,
+      content,
+      ...(sha && { sha })
+    };
+
+    progress(70, 'Envoi vers GitHub...');
+    const putResp = await fetch(`https://api.github.com/repos/${repo}/contents/${filePath}`, {
+      method: 'PUT',
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+
+    if (!putResp.ok) {
+      const err = await putResp.json();
+      throw new Error(err.message || `HTTP ${putResp.status}`);
+    }
+
+    progress(100, '✅ Publié ! Vercel redéploie automatiquement...');
+    document.getElementById('modalTitle').textContent = '✅ Publication réussie !';
+    document.getElementById('modalSub').textContent = 'Votre site sera mis à jour dans ~30 secondes sur Vercel.';
+    document.getElementById('modalSiteLink').href = `https://github.com/${repo}/blob/main/${filePath}`;
+    document.getElementById('modalSiteLink').style.display = 'inline-flex';
+    document.getElementById('modalClose').style.display = 'inline-flex';
+    localStorage.removeItem('ak_preview_data');
+    markClean();
+    toast('Site publié avec succès !', 'success', 6000);
+
+  } catch(e) {
+    document.getElementById('modalTitle').textContent = '❌ Erreur de publication';
+    document.getElementById('modalSub').textContent = e.message || 'Une erreur est survenue. Vérifiez votre token GitHub et votre connexion.';
+    document.getElementById('modalClose').style.display = 'inline-flex';
+    progress(100, '');
+    bar.style.background = '#d93025';
+    toast('Erreur : ' + (e.message || 'Vérifiez le token'), 'error', 6000);
+  }
+}
+
+document.getElementById('modalClose').addEventListener('click', () => {
+  document.getElementById('publishModal').classList.remove('open');
+  document.getElementById('modalBar').style.background = '';
+});
+document.getElementById('publishModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('publishModal'))
+    document.getElementById('publishModal').classList.remove('open');
+});
+
+/* ── Helpers ── */
+function esc(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+</body>
+</html>

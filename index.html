@@ -138,65 +138,8 @@
           <p class="section__lead" data-i18n="programs.lead">Chaque programme est une invitation à vivre le Bénin différemment, avec un soin particulier apporté à chaque détail de votre séjour.</p>
         </div>
 
-        <div class="programmes__grid">
-
-          <!-- Programme Janvier -->
-          <article class="programme-card fade-in">
-            <div class="programme-card__img-wrap">
-              <!-- TODO: Remplacez par une photo du Festival Vodun (janvier) -->
-              <img src="https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=800&q=80" alt="Festival des Arts Vodun à Ouidah" class="programme-card__img" loading="lazy" />
-              <span class="programme-card__badge" data-i18n="prog1.badge">Janvier</span>
-            </div>
-            <div class="programme-card__body">
-              <h3 class="programme-card__title" data-i18n="prog1.title">Circuits Festivités Vodun</h3>
-              <p class="programme-card__desc" data-i18n="prog1.desc">Plongez au cœur du Festival International des Arts et Cultures Vodun à Ouidah. Cérémonies sacrées, processions colorées, rencontres avec les dignitaires et artistes de la diaspora africaine. Un voyage initiatique inoubliable.</p>
-              <ul class="programme-card__details">
-                <li>
-                  <svg class="programme-card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v3M16 2v3M3 8h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"/></svg>
-                  <span data-i18n="prog1.dates">5 – 20 janvier 2026</span>
-                </li>
-                <li>
-                  <svg class="programme-card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
-                  <span data-i18n="prog1.location">Cotonou · Ouidah · Abomey</span>
-                </li>
-                <li>
-                  <svg class="programme-card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                  <span data-i18n="prog1.group">Groupes 8–20 personnes</span>
-                </li>
-              </ul>
-              <a href="#contact" class="btn btn--primary programme-card__btn" data-i18n="prog1.cta">Réserver ce séjour</a>
-            </div>
-          </article>
-
-          <!-- Programme Juillet -->
-          <article class="programme-card programme-card--featured fade-in">
-            <div class="programme-card__img-wrap">
-              <!-- TODO: Remplacez par une photo des vacances d'été au Bénin -->
-              <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&q=80" alt="Plage et nature au Bénin" class="programme-card__img" loading="lazy" />
-              <span class="programme-card__badge programme-card__badge--gold" data-i18n="prog2.badge">Juillet</span>
-            </div>
-            <div class="programme-card__body">
-              <h3 class="programme-card__title" data-i18n="prog2.title">Programmes Touristiques Vacances</h3>
-              <p class="programme-card__desc" data-i18n="prog2.desc">L'été béninois dans toute sa splendeur : plages de la côte atlantique, marchés animés de Cotonou, excursions vers le lac Ahémé et les cités lacustres de Ganvié. Un cocktail parfait entre détente, découverte et saveurs locales.</p>
-              <ul class="programme-card__details">
-                <li>
-                  <svg class="programme-card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v3M16 2v3M3 8h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"/></svg>
-                  <span data-i18n="prog2.dates">1er – 31 juillet 2026</span>
-                </li>
-                <li>
-                  <svg class="programme-card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
-                  <span data-i18n="prog2.location">Cotonou · Ganvié · Grand-Popo</span>
-                </li>
-                <li>
-                  <svg class="programme-card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                  <span data-i18n="prog2.group">Individuels & familles</span>
-                </li>
-              </ul>
-              <a href="#contact" class="btn btn--primary programme-card__btn" data-i18n="prog2.cta">Réserver ce séjour</a>
-            </div>
-          </article>
-
-        </div>
+        <!-- Chargé dynamiquement depuis data.json -->
+        <div class="programmes__grid" id="programmesContainer"></div>
       </div>
     </section>
 
@@ -209,41 +152,8 @@
           <p class="section__lead" data-i18n="gallery.lead">Chaque photo raconte une rencontre, une émotion, un instant suspendu dans l'âme africaine.</p>
         </div>
 
-        <div class="galerie__grid">
-          <!-- TODO: Remplacez ces images par vos propres photos de qualité professionnelle -->
-          <div class="galerie__item fade-in" data-src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1200&q=90" data-caption="Paysage du Bénin">
-            <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=75" alt="Paysage du Bénin" loading="lazy" />
-            <div class="galerie__item-overlay"><span>+</span></div>
-          </div>
-          <div class="galerie__item fade-in" data-src="https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=1200&q=90" data-caption="Cérémonie Vodun à Ouidah">
-            <img src="https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=600&q=75" alt="Cérémonie Vodun" loading="lazy" />
-            <div class="galerie__item-overlay"><span>+</span></div>
-          </div>
-          <div class="galerie__item galerie__item--wide fade-in" data-src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=1200&q=90" data-caption="Tenues traditionnelles béninoises">
-            <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=75" alt="Tenues traditionnelles" loading="lazy" />
-            <div class="galerie__item-overlay"><span>+</span></div>
-          </div>
-          <div class="galerie__item fade-in" data-src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1200&q=90" data-caption="Côte atlantique du Bénin">
-            <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&q=75" alt="Côte atlantique" loading="lazy" />
-            <div class="galerie__item-overlay"><span>+</span></div>
-          </div>
-          <div class="galerie__item fade-in" data-src="https://images.unsplash.com/photo-1602940659805-770d1b3b9911?w=1200&q=90" data-caption="Marché coloré de Cotonou">
-            <img src="https://images.unsplash.com/photo-1602940659805-770d1b3b9911?w=600&q=75" alt="Marché de Cotonou" loading="lazy" />
-            <div class="galerie__item-overlay"><span>+</span></div>
-          </div>
-          <div class="galerie__item galerie__item--tall fade-in" data-src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b9?w=1200&q=90" data-caption="Palais royal d'Abomey">
-            <img src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b9?w=600&q=75" alt="Palais d'Abomey" loading="lazy" />
-            <div class="galerie__item-overlay"><span>+</span></div>
-          </div>
-          <div class="galerie__item fade-in" data-src="https://images.unsplash.com/photo-1520637836862-4d197d17c38a?w=1200&q=90" data-caption="Village lacustre de Ganvié">
-            <img src="https://images.unsplash.com/photo-1520637836862-4d197d17c38a?w=600&q=75" alt="Ganvié village lacustre" loading="lazy" />
-            <div class="galerie__item-overlay"><span>+</span></div>
-          </div>
-          <div class="galerie__item fade-in" data-src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1200&q=90" data-caption="Art et artisanat du Bénin">
-            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=75" alt="Artisanat béninois" loading="lazy" />
-            <div class="galerie__item-overlay"><span>+</span></div>
-          </div>
-        </div>
+        <!-- Chargé dynamiquement depuis data.json -->
+        <div class="galerie__grid" id="galerieGrid"></div>
       </div>
     </section>
 

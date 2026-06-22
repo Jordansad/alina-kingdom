@@ -1,0 +1,76 @@
+{
+  "programs": [
+    {
+      "id": "vodun",
+      "badge": { "fr": "Janvier", "en": "January", "it": "Gennaio" },
+      "featured": false,
+      "image": "https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=800&q=80",
+      "title": {
+        "fr": "Circuits Festivités Vodun",
+        "en": "Vodun Festival Circuits",
+        "it": "Circuiti Festività Vodun"
+      },
+      "description": {
+        "fr": "Plongez au cœur du Festival International des Arts et Cultures Vodun à Ouidah. Cérémonies sacrées, processions colorées, rencontres avec les dignitaires et artistes de la diaspora africaine. Un voyage initiatique inoubliable.",
+        "en": "Immerse yourself in the International Festival of Vodun Arts and Cultures in Ouidah. Sacred ceremonies, colourful processions, encounters with dignitaries and artists from the African diaspora. An unforgettable initiatory journey.",
+        "it": "Immergetevi nel cuore del Festival Internazionale delle Arti e Culture Vodun a Ouidah. Cerimonie sacre, processioni colorate, incontri con i dignitari e gli artisti della diaspora africana. Un viaggio iniziatico indimenticabile."
+      },
+      "dates": {
+        "fr": "5 – 20 janvier 2026",
+        "en": "January 5 – 20, 2026",
+        "it": "5 – 20 gennaio 2026"
+      },
+      "location": {
+        "fr": "Cotonou · Ouidah · Abomey",
+        "en": "Cotonou · Ouidah · Abomey",
+        "it": "Cotonou · Ouidah · Abomey"
+      },
+      "group": {
+        "fr": "Groupes 8–20 personnes",
+        "en": "Groups of 8–20 people",
+        "it": "Gruppi da 8 a 20 persone"
+      }
+    },
+    {
+      "id": "vacances",
+      "badge": { "fr": "Juillet", "en": "July", "it": "Luglio" },
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&q=80",
+      "title": {
+        "fr": "Programmes Touristiques Vacances",
+        "en": "Holiday Tourism Programs",
+        "it": "Programmi Turistici Vacanze"
+      },
+      "description": {
+        "fr": "L'été béninois dans toute sa splendeur : plages de la côte atlantique, marchés animés de Cotonou, excursions vers le lac Ahémé et les cités lacustres de Ganvié. Un cocktail parfait entre détente, découverte et saveurs locales.",
+        "en": "Beninese summer in all its splendour: beaches on the Atlantic coast, lively markets in Cotonou, excursions to Lake Ahémé and the lake cities of Ganvié. A perfect blend of relaxation, discovery and local flavours.",
+        "it": "L'estate beninese in tutto il suo splendore: spiagge della costa atlantica, vivaci mercati di Cotonou, escursioni al lago Ahémé e alle città lacustri di Ganvié. Un perfetto cocktail di relax, scoperta e sapori locali."
+      },
+      "dates": {
+        "fr": "1er – 31 juillet 2026",
+        "en": "July 1–31, 2026",
+        "it": "1° – 31 luglio 2026"
+      },
+      "location": {
+        "fr": "Cotonou · Ganvié · Grand-Popo",
+        "en": "Cotonou · Ganvié · Grand-Popo",
+        "it": "Cotonou · Ganvié · Grand-Popo"
+      },
+      "group": {
+        "fr": "Individuels & familles",
+        "en": "Individuals & families",
+        "it": "Individui e famiglie"
+      }
+    }
+  ],
+  "gallery": [
+    { "src": "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1200&q=90", "thumb": "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=75", "caption": "Paysage du Bénin", "wide": false, "tall": false },
+    { "src": "https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=1200&q=90", "thumb": "https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=600&q=75", "caption": "Cérémonie Vodun à Ouidah", "wide": false, "tall": false },
+    { "src": "https://images.unsplash.com/photo-1567521464027-f127ff144326?w=1200&q=90", "thumb": "https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=75", "caption": "Tenues traditionnelles béninoises", "wide": true, "tall": false },
+    { "src": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1200&q=90", "thumb": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&q=75", "caption": "Côte atlantique du Bénin", "wide": false, "tall": false },
+    { "src": "https://images.unsplash.com/photo-1602940659805-770d1b3b9911?w=1200&q=90", "thumb": "https://images.unsplash.com/photo-1602940659805-770d1b3b9911?w=600&q=75", "caption": "Marché coloré de Cotonou", "wide": false, "tall": false },
+    { "src": "https://images.unsplash.com/photo-1489392191049-fc10c97e64b9?w=1200&q=90", "thumb": "https://images.unsplash.com/photo-1489392191049-fc10c97e64b9?w=600&q=75", "caption": "Palais royal d'Abomey", "wide": false, "tall": true },
+    { "src": "https://images.unsplash.com/photo-1520637836862-4d197d17c38a?w=1200&q=90", "thumb": "https://images.unsplash.com/photo-1520637836862-4d197d17c38a?w=600&q=75", "caption": "Village lacustre de Ganvié", "wide": false, "tall": false },
+    { "src": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1200&q=90", "thumb": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=75", "caption": "Art et artisanat du Bénin", "wide": false, "tall": false }
+  ]
+}

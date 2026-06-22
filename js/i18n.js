@@ -359,6 +359,7 @@ function setLang(lang) {
   currentLang = lang;
   localStorage.setItem('ak_lang', lang);
   applyTranslations();
+  document.dispatchEvent(new CustomEvent('langchange', { detail: { lang } }));
 }
 
 /* Wire up buttons after DOM ready */
