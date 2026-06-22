@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- SEO -->
+  <title data-i18n="meta.title">ALINA KINGDOM – Séjours Touristiques au Bénin</title>
+  <meta name="description" data-i18n-attr="content" data-i18n="meta.description" content="ALINA KINGDOM vous propose des séjours touristiques haut de gamme au Bénin : circuits Vodun, vacances estivales, immersion culturelle authentique à Cotonou, Ouidah et Abomey." />
+  <meta name="keywords" content="tourisme au Bénin, voyage culturel Bénin, séjour Vodun, vacances Afrique, tourisme africain, Cotonou, Ouidah, Abomey, festival Vodun" />
+  <meta name="author" content="ALINA KINGDOM" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.alinakingdom.com/" />
+  <meta property="og:title" data-i18n="meta.title" content="ALINA KINGDOM – Séjours Touristiques au Bénin" />
+  <meta property="og:description" content="Découvrez le Bénin autrement avec ALINA KINGDOM. Circuits Vodun, immersion culturelle, séjours vacances haut de gamme en Afrique de l'Ouest." />
+  <meta property="og:image" content="images/og-preview.jpg" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ALINA KINGDOM – Séjours Touristiques au Bénin" />
+  <meta name="twitter:description" content="Circuits culturels et séjours touristiques au Bénin avec ALINA KINGDOM." />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="images/logo.jpeg" />
+</head>
+<body>
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#accueil" class="nav__logo">
+        <img src="images/logo.jpeg" alt="ALINA KINGDOM logo" class="nav__logo-img" />
+        <span class="nav__logo-text">ALINA KINGDOM</span>
+      </a>
+
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="#accueil"   class="nav__link" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="#apropos"   class="nav__link" data-i18n="nav.about">À propos</a></li>
+        <li><a href="#programmes" class="nav__link" data-i18n="nav.programs">Programmes</a></li>
+        <li><a href="#galerie"   class="nav__link" data-i18n="nav.gallery">Galerie</a></li>
+        <li><a href="#pourquoi"  class="nav__link" data-i18n="nav.why">Pourquoi nous</a></li>
+        <li><a href="#contact"   class="nav__link nav__link--cta" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <!-- Language switcher -->
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn active" data-lang="fr">FR</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="it">IT</button>
+        </div>
+        <!-- Hamburger -->
+        <button class="nav__hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="accueil">
+      <!-- TODO: Remplacez l'image hero par une photo haute résolution du Bénin (ex: panorama Cotonou/Ouidah) -->
+      <div class="hero__bg">
+        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1920&q=80" alt="Paysage du Bénin" class="hero__img" loading="eager" />
+        <div class="hero__overlay"></div>
+      </div>
+      <div class="hero__content container">
+        <p class="hero__eyebrow" data-i18n="hero.eyebrow">Tourisme haut de gamme • Bénin, Afrique de l'Ouest</p>
+        <h1 class="hero__title" data-i18n="hero.title">Vivez le Bénin<br><em>dans toute son âme</em></h1>
+        <p class="hero__subtitle" data-i18n="hero.subtitle">Circuits Vodun, séjours culturels et escapades nature au cœur de l'Afrique ancestrale. Une expérience unique, conçue pour vous.</p>
+        <div class="hero__cta">
+          <a href="#programmes" class="btn btn--primary" data-i18n="hero.cta1">Voir nos programmes</a>
+          <a href="#apropos"    class="btn btn--outline" data-i18n="hero.cta2">En savoir plus</a>
+        </div>
+      </div>
+      <a href="#apropos" class="hero__scroll" aria-label="Défiler vers le bas">
+        <span class="hero__scroll-icon"></span>
+      </a>
+    </section>
+
+    <!-- ===== À PROPOS ===== -->
+    <section class="section apropos" id="apropos">
+      <div class="container apropos__grid">
+        <div class="apropos__visual fade-in">
+          <!-- TODO: Remplacez par une photo authentique de votre équipe ou d'un lieu emblématique -->
+          <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=900&q=80" alt="Femmes béninoises en tenue traditionnelle" class="apropos__img" loading="lazy" />
+          <div class="apropos__badge">
+            <span class="apropos__badge-number">10+</span>
+            <span class="apropos__badge-text" data-i18n="about.badge">ans d'expérience</span>
+          </div>
+        </div>
+        <div class="apropos__content fade-in">
+          <span class="section__eyebrow" data-i18n="about.eyebrow">Notre histoire</span>
+          <h2 class="section__title" data-i18n="about.title">ALINA KINGDOM,<br>votre porte d'entrée<br>vers le Bénin authentique</h2>
+          <p class="apropos__text" data-i18n="about.p1">Fondée par des passionnés du patrimoine béninois, ALINA KINGDOM est une agence de séjours touristiques dédiée à révéler les merveilles cachées du Bénin à un public international exigeant. Nous croyons que le voyage doit transformer, émerveiller et relier les humains à quelque chose de plus grand qu'eux.</p>
+          <p class="apropos__text" data-i18n="about.p2">De la majesté des palais royaux d'Abomey aux rivages mystiques de Ouidah, de la Route des Esclaves au vrai visage du Vodun – une spiritualité vivante, profonde et lumineuse – nous vous guidons là où les guides ordinaires ne vont pas.</p>
+          <ul class="apropos__values">
+            <li class="apropos__value">
+              <span class="apropos__value-icon">✦</span>
+              <div>
+                <strong data-i18n="about.v1title">Authenticité</strong>
+                <span data-i18n="about.v1desc">Expériences conçues avec les communautés locales</span>
+              </div>
+            </li>
+            <li class="apropos__value">
+              <span class="apropos__value-icon">✦</span>
+              <div>
+                <strong data-i18n="about.v2title">Excellence</strong>
+                <span data-i18n="about.v2desc">Hôtels sélectionnés, guides certifiés, service sur mesure</span>
+              </div>
+            </li>
+            <li class="apropos__value">
+              <span class="apropos__value-icon">✦</span>
+              <div>
+                <strong data-i18n="about.v3title">Responsabilité</strong>
+                <span data-i18n="about.v3desc">Tourisme éthique qui profite aux populations locales</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROGRAMMES ===== -->
+    <section class="section programmes" id="programmes">
+      <div class="container">
+        <div class="section__header fade-in">
+          <span class="section__eyebrow" data-i18n="programs.eyebrow">Nos offres</span>
+          <h2 class="section__title" data-i18n="programs.title">Deux saisons,<br>deux expériences uniques</h2>
+          <p class="section__lead" data-i18n="programs.lead">Chaque programme est une invitation à vivre le Bénin différemment, avec un soin particulier apporté à chaque détail de votre séjour.</p>
+        </div>
+
+        <div class="programmes__grid">
+
+          <!-- Programme Janvier -->
+          <article class="programme-card fade-in">
+            <div class="programme-card__img-wrap">
+              <!-- TODO: Remplacez par une photo du Festival Vodun (janvier) -->
+              <img src="https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=800&q=80" alt="Festival des Arts Vodun à Ouidah" class="programme-card__img" loading="lazy" />
+              <span class="programme-card__badge" data-i18n="prog1.badge">Janvier</span>
+            </div>
+            <div class="programme-card__body">
+              <h3 class="programme-card__title" data-i18n="prog1.title">Circuits Festivités Vodun</h3>
+              <p class="programme-card__desc" data-i18n="prog1.desc">Plongez au cœur du Festival International des Arts et Cultures Vodun à Ouidah. Cérémonies sacrées, processions colorées, rencontres avec les dignitaires et artistes de la diaspora africaine. Un voyage initiatique inoubliable.</p>
+              <ul class="programme-card__details">
+                <li>
+                  <svg class="programme-card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v3M16 2v3M3 8h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"/></svg>
+                  <span data-i18n="prog1.dates">5 – 20 janvier 2026</span>
+                </li>
+                <li>
+                  <svg class="programme-card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+                  <span data-i18n="prog1.location">Cotonou · Ouidah · Abomey</span>
+                </li>
+                <li>
+                  <svg class="programme-card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  <span data-i18n="prog1.group">Groupes 8–20 personnes</span>
+                </li>
+              </ul>
+              <a href="#contact" class="btn btn--primary programme-card__btn" data-i18n="prog1.cta">Réserver ce séjour</a>
+            </div>
+          </article>
+
+          <!-- Programme Juillet -->
+          <article class="programme-card programme-card--featured fade-in">
+            <div class="programme-card__img-wrap">
+              <!-- TODO: Remplacez par une photo des vacances d'été au Bénin -->
+              <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&q=80" alt="Plage et nature au Bénin" class="programme-card__img" loading="lazy" />
+              <span class="programme-card__badge programme-card__badge--gold" data-i18n="prog2.badge">Juillet</span>
+            </div>
+            <div class="programme-card__body">
+              <h3 class="programme-card__title" data-i18n="prog2.title">Programmes Touristiques Vacances</h3>
+              <p class="programme-card__desc" data-i18n="prog2.desc">L'été béninois dans toute sa splendeur : plages de la côte atlantique, marchés animés de Cotonou, excursions vers le lac Ahémé et les cités lacustres de Ganvié. Un cocktail parfait entre détente, découverte et saveurs locales.</p>
+              <ul class="programme-card__details">
+                <li>
+                  <svg class="programme-card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v3M16 2v3M3 8h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"/></svg>
+                  <span data-i18n="prog2.dates">1er – 31 juillet 2026</span>
+                </li>
+                <li>
+                  <svg class="programme-card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+                  <span data-i18n="prog2.location">Cotonou · Ganvié · Grand-Popo</span>
+                </li>
+                <li>
+                  <svg class="programme-card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  <span data-i18n="prog2.group">Individuels & familles</span>
+                </li>
+              </ul>
+              <a href="#contact" class="btn btn--primary programme-card__btn" data-i18n="prog2.cta">Réserver ce séjour</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALERIE ===== -->
+    <section class="section galerie" id="galerie">
+      <div class="container">
+        <div class="section__header fade-in">
+          <span class="section__eyebrow" data-i18n="gallery.eyebrow">Galerie</span>
+          <h2 class="section__title" data-i18n="gallery.title">Le Bénin en images</h2>
+          <p class="section__lead" data-i18n="gallery.lead">Chaque photo raconte une rencontre, une émotion, un instant suspendu dans l'âme africaine.</p>
+        </div>
+
+        <div class="galerie__grid">
+          <!-- TODO: Remplacez ces images par vos propres photos de qualité professionnelle -->
+          <div class="galerie__item fade-in" data-src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1200&q=90" data-caption="Paysage du Bénin">
+            <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=75" alt="Paysage du Bénin" loading="lazy" />
+            <div class="galerie__item-overlay"><span>+</span></div>
+          </div>
+          <div class="galerie__item fade-in" data-src="https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=1200&q=90" data-caption="Cérémonie Vodun à Ouidah">
+            <img src="https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=600&q=75" alt="Cérémonie Vodun" loading="lazy" />
+            <div class="galerie__item-overlay"><span>+</span></div>
+          </div>
+          <div class="galerie__item galerie__item--wide fade-in" data-src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=1200&q=90" data-caption="Tenues traditionnelles béninoises">
+            <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=75" alt="Tenues traditionnelles" loading="lazy" />
+            <div class="galerie__item-overlay"><span>+</span></div>
+          </div>
+          <div class="galerie__item fade-in" data-src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1200&q=90" data-caption="Côte atlantique du Bénin">
+            <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&q=75" alt="Côte atlantique" loading="lazy" />
+            <div class="galerie__item-overlay"><span>+</span></div>
+          </div>
+          <div class="galerie__item fade-in" data-src="https://images.unsplash.com/photo-1602940659805-770d1b3b9911?w=1200&q=90" data-caption="Marché coloré de Cotonou">
+            <img src="https://images.unsplash.com/photo-1602940659805-770d1b3b9911?w=600&q=75" alt="Marché de Cotonou" loading="lazy" />
+            <div class="galerie__item-overlay"><span>+</span></div>
+          </div>
+          <div class="galerie__item galerie__item--tall fade-in" data-src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b9?w=1200&q=90" data-caption="Palais royal d'Abomey">
+            <img src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b9?w=600&q=75" alt="Palais d'Abomey" loading="lazy" />
+            <div class="galerie__item-overlay"><span>+</span></div>
+          </div>
+          <div class="galerie__item fade-in" data-src="https://images.unsplash.com/photo-1520637836862-4d197d17c38a?w=1200&q=90" data-caption="Village lacustre de Ganvié">
+            <img src="https://images.unsplash.com/photo-1520637836862-4d197d17c38a?w=600&q=75" alt="Ganvié village lacustre" loading="lazy" />
+            <div class="galerie__item-overlay"><span>+</span></div>
+          </div>
+          <div class="galerie__item fade-in" data-src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1200&q=90" data-caption="Art et artisanat du Bénin">
+            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=75" alt="Artisanat béninois" loading="lazy" />
+            <div class="galerie__item-overlay"><span>+</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== POURQUOI NOUS ===== -->
+    <section class="section pourquoi" id="pourquoi">
+      <div class="container">
+        <div class="section__header fade-in">
+          <span class="section__eyebrow" data-i18n="why.eyebrow">Nos atouts</span>
+          <h2 class="section__title" data-i18n="why.title">Pourquoi choisir<br>ALINA KINGDOM ?</h2>
+        </div>
+        <div class="pourquoi__grid">
+
+          <div class="pourquoi__card fade-in">
+            <div class="pourquoi__icon-wrap">
+              <svg class="pourquoi__icon" viewBox="0 0 48 48" aria-hidden="true">
+                <circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M24 12c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 4a8 8 0 110 16A8 8 0 0124 16z" fill="currentColor" opacity=".2"/>
+                <path d="M24 20a4 4 0 100 8 4 4 0 000-8z" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="pourquoi__title" data-i18n="why.c1title">Authenticité Garantie</h3>
+            <p class="pourquoi__desc" data-i18n="why.c1desc">Nos programmes sont co-construits avec les communautés locales, les dignitaires Vodun et les artistes béninois. Vous vivez une immersion réelle, pas une reconstitution touristique.</p>
+          </div>
+
+          <div class="pourquoi__card fade-in">
+            <div class="pourquoi__icon-wrap">
+              <svg class="pourquoi__icon" viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M24 6l4.5 9 10 1.5-7.25 7 1.75 10L24 29l-9 4.5 1.75-10L9.5 16.5 19.5 15z" fill="currentColor" opacity=".2" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="pourquoi__title" data-i18n="why.c2title">Haut de Gamme</h3>
+            <p class="pourquoi__desc" data-i18n="why.c2desc">Hébergements soigneusement sélectionnés, transferts privés, guides certifiés bilingues et gastronomie locale raffinée. Votre confort est notre priorité absolue.</p>
+          </div>
+
+          <div class="pourquoi__card fade-in">
+            <div class="pourquoi__icon-wrap">
+              <svg class="pourquoi__icon" viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M24 8C15.163 8 8 15.163 8 24s7.163 16 16 16 16-7.163 16-16S32.837 8 24 8zm0 4c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zm0 22.4c-4 0-7.52-2.04-9.6-5.12C14.44 26.6 20 25.2 24 25.2s9.56 1.4 9.6 4.08c-2.08 3.08-5.6 5.12-9.6 5.12z" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="pourquoi__title" data-i18n="why.c3title">Accompagnement Personnalisé</h3>
+            <p class="pourquoi__desc" data-i18n="why.c3desc">Un conseiller dédié vous accompagne de la réservation jusqu'au retour. Groupes, familles, voyageurs solos : chaque itinéraire est adapté à vos envies et besoins spécifiques.</p>
+          </div>
+
+          <div class="pourquoi__card fade-in">
+            <div class="pourquoi__icon-wrap">
+              <svg class="pourquoi__icon" viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M24 4L6 16v4h36v-4L24 4zM8 24v14h8V28h16v10h8V24H8z" fill="currentColor" opacity=".3"/>
+                <rect x="6" y="36" width="36" height="4" rx="1" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="pourquoi__title" data-i18n="why.c4title">Expertise Locale</h3>
+            <p class="pourquoi__desc" data-i18n="why.c4desc">Avec plus de 10 ans d'ancrage dans le tourisme béninois, notre réseau de partenaires locaux nous permet d'ouvrir des portes inaccessibles aux agences classiques.</p>
+          </div>
+
+          <div class="pourquoi__card fade-in">
+            <div class="pourquoi__icon-wrap">
+              <svg class="pourquoi__icon" viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4zm2 30h-4V22h4v12zm0-16h-4v-4h4v4z" fill="currentColor" opacity=".3"/>
+                <path d="M22 22h4v12h-4zm0-6h4v4h-4z" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="pourquoi__title" data-i18n="why.c5title">Sécurité & Sérénité</h3>
+            <p class="pourquoi__desc" data-i18n="why.c5desc">Tous nos programmes incluent une assistance 24h/24, une couverture assurantielle et un briefing complet avant le départ. Voyagez l'esprit libre.</p>
+          </div>
+
+          <div class="pourquoi__card fade-in">
+            <div class="pourquoi__icon-wrap">
+              <svg class="pourquoi__icon" viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M38 8H10a2 2 0 00-2 2v28a2 2 0 002 2h28a2 2 0 002-2V10a2 2 0 00-2-2zM20 34l-8-8 2.83-2.83L20 28.34l13.17-13.17L36 18 20 34z" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="pourquoi__title" data-i18n="why.c6title">Tourisme Responsable</h3>
+            <p class="pourquoi__desc" data-i18n="why.c6desc">Une partie de nos revenus est reversée à des initiatives locales : écoles, artisans, préservation du patrimoine. Votre voyage construit le Bénin de demain.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section contact" id="contact">
+      <div class="container contact__grid">
+        <div class="contact__info fade-in">
+          <span class="section__eyebrow" data-i18n="contact.eyebrow">Nous écrire</span>
+          <h2 class="section__title" data-i18n="contact.title">Planifions votre<br>voyage ensemble</h2>
+          <p class="contact__text" data-i18n="contact.text">Notre équipe répond dans les 24 heures. N'hésitez pas à nous décrire vos envies : nous construisons chaque séjour comme une expérience sur mesure.</p>
+
+          <ul class="contact__details">
+            <li class="contact__detail">
+              <svg class="contact__detail-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <!-- TODO: Remplacez par votre adresse email -->
+              <a href="mailto:contact@alinakingdom.com">contact@alinakingdom.com</a>
+            </li>
+            <li class="contact__detail">
+              <svg class="contact__detail-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              <a href="tel:+22901524141733">+229 01 52 41 41 73 3</a>
+            </li>
+            <li class="contact__detail">
+              <svg class="contact__detail-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+              <span data-i18n="contact.address">Cotonou, Bénin – Afrique de l'Ouest</span>
+            </li>
+          </ul>
+
+          <div class="contact__social">
+            <a href="#" class="social-link" aria-label="Facebook" target="_blank" rel="noopener">
+              <!-- TODO: Remplacez href par votre URL Facebook -->
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">
+              <!-- TODO: Remplacez href par votre URL Instagram -->
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube" target="_blank" rel="noopener">
+              <!-- TODO: Remplacez href par votre URL YouTube -->
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+            <a href="https://wa.me/22901524141733" class="social-link social-link--whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.522 5.83L.057 23.25l5.57-1.463A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.206-1.49l-.374-.222-3.303.87.882-3.22-.243-.39A9.818 9.818 0 1112 21.818z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <form class="contact__form fade-in" id="contactForm" novalidate>
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label" for="nom" data-i18n="form.name">Nom complet *</label>
+              <input class="form__input" type="text" id="nom" name="nom" autocomplete="name" required />
+              <span class="form__error" id="nomError"></span>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="email" data-i18n="form.email">Email *</label>
+              <input class="form__input" type="email" id="email" name="email" autocomplete="email" required />
+              <span class="form__error" id="emailError"></span>
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label" for="telephone" data-i18n="form.phone">Téléphone</label>
+              <input class="form__input" type="tel" id="telephone" name="telephone" autocomplete="tel" />
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="pays" data-i18n="form.country">Pays *</label>
+              <input class="form__input" type="text" id="pays" name="pays" autocomplete="country-name" required />
+              <span class="form__error" id="paysError"></span>
+            </div>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="programme" data-i18n="form.program">Programme souhaité *</label>
+            <select class="form__input form__select" id="programme" name="programme" required>
+              <option value="" data-i18n="form.programSelect">-- Choisissez un programme --</option>
+              <option value="vodun" data-i18n="form.programVodun">Circuits Festivités Vodun (Janvier)</option>
+              <option value="vacances" data-i18n="form.programVacances">Programmes Vacances (Juillet)</option>
+              <option value="autre" data-i18n="form.programAutre">Autre / Sur mesure</option>
+            </select>
+            <span class="form__error" id="programmeError"></span>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="message" data-i18n="form.message">Message *</label>
+            <textarea class="form__input form__textarea" id="message" name="message" rows="5" required></textarea>
+            <span class="form__error" id="messageError"></span>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full" id="submitBtn">
+            <span data-i18n="form.submit">Envoyer ma demande</span>
+            <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+          <p class="form__success" id="formSuccess" data-i18n="form.success">Merci ! Nous vous répondrons dans les 24 heures.</p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="images/logo.jpeg" alt="ALINA KINGDOM" class="footer__logo" />
+        <p class="footer__tagline" data-i18n="footer.tagline">L'âme du Bénin, à votre portée.</p>
+        <div class="footer__social">
+          <a href="#" class="social-link social-link--footer" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-link social-link--footer" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-link social-link--footer" aria-label="YouTube" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__nav">
+        <h4 class="footer__nav-title" data-i18n="footer.nav">Navigation</h4>
+        <ul class="footer__nav-list">
+          <li><a href="#accueil"    data-i18n="nav.home">Accueil</a></li>
+          <li><a href="#apropos"    data-i18n="nav.about">À propos</a></li>
+          <li><a href="#programmes" data-i18n="nav.programs">Programmes</a></li>
+          <li><a href="#galerie"    data-i18n="nav.gallery">Galerie</a></li>
+          <li><a href="#contact"    data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__nav">
+        <h4 class="footer__nav-title" data-i18n="footer.programs">Programmes</h4>
+        <ul class="footer__nav-list">
+          <li><a href="#programmes" data-i18n="prog1.title">Circuits Vodun (Janvier)</a></li>
+          <li><a href="#programmes" data-i18n="prog2.title">Programmes Vacances (Juillet)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__nav">
+        <h4 class="footer__nav-title" data-i18n="footer.legal">Informations</h4>
+        <ul class="footer__nav-list">
+          <!-- TODO: Créez ces pages légales et mettez à jour les liens -->
+          <li><a href="#" data-i18n="footer.mentions">Mentions légales</a></li>
+          <li><a href="#" data-i18n="footer.privacy">Politique de confidentialité</a></li>
+          <li><a href="#" data-i18n="footer.cgv">Conditions générales</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container">
+        <p data-i18n="footer.copyright">© 2026 ALINA KINGDOM. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image agrandie">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Fermer">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Image précédente">&#8592;</button>
+    <div class="lightbox__content">
+      <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+      <p class="lightbox__caption" id="lightboxCaption"></p>
+    </div>
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Image suivante">&#8594;</button>
+  </div>
+
+  <!-- ===== WHATSAPP FLOAT ===== -->
+  <a href="https://wa.me/22901524141733" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.522 5.83L.057 23.25l5.57-1.463A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.206-1.49l-.374-.222-3.303.87.882-3.22-.243-.39A9.818 9.818 0 1112 21.818z"/></svg>
+    <span class="whatsapp-float__tooltip" data-i18n="whatsapp.tooltip">Chattez avec nous</span>
+  </a>
+
+  <!-- Scripts -->
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
